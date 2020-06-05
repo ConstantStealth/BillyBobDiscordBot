@@ -1,1 +1,1 @@
-py -3 -m pip install -U discord.py
+pip install -U discord.py
