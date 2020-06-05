@@ -33,4 +33,4 @@ async def on_message(message):
             await message.channel.send("You are a mod")
 
 
-client.run(token)
+client.run(token, bot=True, reconnect=True)
