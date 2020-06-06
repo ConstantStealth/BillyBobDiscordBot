@@ -1,4 +1,5 @@
 import discord
+import subprocess
 
 def read_token():
     with open("token.txt", "r") as f:
@@ -25,7 +26,7 @@ async def on_message(message):
         if message.content.find("!membercount") !=-1:
             await message.channel.send(f"""Number of Server Members: {id.member_count}""")
         elif message.content == "!terrariastatus":
-            await message.channel.send("This command is being researched")
+            await subprocess.call(["ping google.com"])
 
 #Mod Only Commands
     if str(message.channel) in channels and str(message.author) in mod_list:
