@@ -35,9 +35,9 @@ async def on_message(message):
             stdout, stderr = await proc.communicate()
 
             if proc.returncode == 0:
-                print('Server is up.')
+                await message.channel.send('Server is up.')
             else:
-                print('Server is down.')
+                await message.channel.send('Server is down.')
 
 #Mod Only Commands
     if str(message.channel) in channels and str(message.author) in mod_list:
