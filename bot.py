@@ -28,7 +28,7 @@ async def on_message(message):
             await message.channel.send(f"""Number of Server Members: {id.member_count}""")
         elif message.content == "!terrariastatus":
             try:
-                await asyncio.create_subprocess_shell((['nc', '-vz', '-w 30', 'theboisterraria.ddns.net', '7777'])
+                await asyncio.create_subprocess_shell(['nc', '-vz', '-w 30', 'theboisterraria.ddns.net', '7777'])
             except:
                 await message.channel.send("it died")
             else:
