@@ -1,5 +1,6 @@
 import discord
 import subprocess
+import asyncio
 
 def read_token():
     with open("token.txt", "r") as f:
@@ -27,7 +28,7 @@ async def on_message(message):
             await message.channel.send(f"""Number of Server Members: {id.member_count}""")
         elif message.content == "!terrariastatus":
             try:
-                subprocess.check_call(['nc', '-vz', '-w 30', 'theboisterraria.ddns.net', '7777'])
+                await asyncio.subprocess.check_call(['nc', '-vz', '-w 30', 'theboisterraria.ddns.net', '7777'])
             except:
                 await message.channel.send("it died")
             else:
