@@ -1,5 +1,4 @@
 import discord
-import subprocess
 
 def read_token():
     with open("token.txt", "r") as f:
@@ -26,7 +25,11 @@ async def on_message(message):
         if message.content.find("!membercount") !=-1:
             await message.channel.send(f"""Number of Server Members: {id.member_count}""")
         elif message.content == "!terrariastatus":
-            await subprocess.call(["ping google.com"])
+            subprocess.check_call(['nc', '-vz', theboisterraria.ddns.net, 7777])
+            except subprocess.CalledProcessError:
+            channel = self.bot.get_channel(
+                546232280918523914)  # Replace with the channel id that you want to send the message
+            await channel.send('Terraria server fell over.')
 
 #Mod Only Commands
     if str(message.channel) in channels and str(message.author) in mod_list:
