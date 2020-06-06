@@ -27,12 +27,17 @@ async def on_message(message):
         if message.content.find("!membercount") !=-1:
             await message.channel.send(f"""Number of Server Members: {id.member_count}""")
         elif message.content == "!terrariastatus":
-            try:
-                await asyncio.create_subprocess_shell(['nc', '-vz', '-w 30', 'theboisterraria.ddns.net', '7777'])
-            except:
-                await message.channel.send("it died")
+            announce_channel = self.bot.get_channel(630157496568512543)
+            cmd = 'nc', '-vz', '-w 30', 'theboisterraria.ddns.net', '7777'
+            proc = await asyncio.create_subprocess_shell(cmd, stdout=asyncio.subprocess.PIPE,
+                                                             stderr=asyncio.subprocess.PIPE)
+
+            stdout, stderr = await proc.communicate()
+
+            if proc.returncode == 0:
+                print('Server is up.')
             else:
-                await message.channel.send("its up")
+                print('Server is down.')
 
 #Mod Only Commands
     if str(message.channel) in channels and str(message.author) in mod_list:
