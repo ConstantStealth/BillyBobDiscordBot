@@ -26,7 +26,7 @@ async def on_message(message):
     if str(message.channel) in channels:
         if message.content.find("!membercount") !=-1:
             await message.channel.send(f"""Number of Server Members: {id.member_count}""")
-        elif message.content == "!terrariastatus":
+        elif message.content == "!tstatus":
             await message.channel.send("Pinging Terraria Server...")
             cmd = 'nc -vz -w 30 theboisterraria.ddns.net 7777'
             proc = await asyncio.create_subprocess_shell(cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
