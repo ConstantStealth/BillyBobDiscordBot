@@ -17,11 +17,9 @@ class Game(commands.Cog):
         stdout, stderr = await proc.communicate()
 
         if proc.returncode == 0:
-            await ctx.delete_message(content='Pinging Terraria Server... ' 'This can take up to 30 seconds.')
-            await ctx.send('The Terraria server is currently up.')
+            await ctx.send('The Terraria server is currently up.' +ctx.message.author.mention)
         else:
-            await ctx.delete_message(content='Pinging Terraria Server... ' 'This can take up to 30 seconds.')
-            await ctx.send('The Terraria server is currently down.')
+            await ctx.send('The Terraria server is currently down.' +ctx.message.author.mention)
 
 def setup(bot):
     bot.add_cog(Game(bot))
