@@ -7,6 +7,7 @@ class Game(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+#Checks the current status of the Terraria server
     @commands.command(brief='- Displays the current status of the Terraria server.')
     async def tstatus(self, ctx):
         await ctx.send('Pinging Terraria Server... ' 'This can take up to 30 seconds.')
