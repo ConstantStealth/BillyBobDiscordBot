@@ -13,8 +13,7 @@ class Game(commands.Cog):
 #Checks the current status of the Terraria server
     @commands.command(brief='- Displays the current status of the Terraria server.')
     async def tstatus(self, ctx):
-        message = 'Pinging Terraria Server... ' 'This can take up to 30 seconds.'
-        await ctx.send(message)
+        await ctx.send('Pinging Terraria Server... ' 'This can take up to 30 seconds.')
         cmd = ('nc -vz -w 30 ' + self.IP +' ' + self.PORT)
         proc = await asyncio.create_subprocess_shell(cmd, stdout=asyncio.subprocess.PIPE,
                                                      stderr=asyncio.subprocess.PIPE)
@@ -23,16 +22,14 @@ class Game(commands.Cog):
 
         if proc.returncode == 0:
             await ctx.send('The Terraria server is currently up ' +ctx.message.author.mention)
-            await ctx.delete_message(message)
         else:
             await ctx.send('The Terraria server is currently down ' +ctx.message.author.mention)
-            await ctx.delete_message(message)
 
 #Displays the Terraria server IP and Port
     @commands.command(brief='- Displays the Terraria Server IP and Port')
     async def tinfo(self, ctx):
-        await ctx.send('Terraria Server IP: ' + self.IP +
-                       'Server Port: ' + self.PORT)
+        await ctx.send(' You can connect to the Terraria server with the below information:```Server IP: ' + self.IP + '\n'
+                        'Server Port: ' + self.PORT + '```')
 
 def setup(bot):
     bot.add_cog(Game(bot))
