@@ -17,9 +17,9 @@ class Game(commands.Cog):
         stdout, stderr = await proc.communicate()
 
         if proc.returncode == 0:
-            await ctx.send('The Terraria server is currently up.' +ctx.message.author.mention)
+            await ctx.send('The Terraria server is currently up ' +ctx.message.author.mention)
         else:
-            await ctx.send('The Terraria server is currently down.' +ctx.message.author.mention)
+            await ctx.send('The Terraria server is currently down ' +ctx.message.author.mention)
 
 def setup(bot):
     bot.add_cog(Game(bot))
