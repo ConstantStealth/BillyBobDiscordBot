@@ -7,7 +7,7 @@ class Game(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    IP = '192.168.0.0'
+    IP = 'theboisterraria.ddns.net'
     PORT = '7777'
 
 #Checks the current status of the Terraria server
