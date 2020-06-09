@@ -6,14 +6,14 @@ import asyncio
 class Game(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.IP = 'theboisterrariaserver.ddns.net'
-        self.PORT = '7777'
+        #self.IP = 'theboisterrariaserver.ddns.net'
+        #self.PORT = '7777'
 
 #Checks the current status of the Terraria server
     @commands.command(brief='- Displays the current status of the Terraria server.')
     async def tstatus(self, ctx):
         await ctx.send('Pinging Terraria Server... ' 'This can take up to 30 seconds.')
-        cmd = ('nc -vz -w 30 ' + self.IP +' ' + self.PORT)
+        cmd = ('nc -vz -w 30 ' + 'theboisterrariaserver.ddns.net' +' ' + '7777')
         proc = await asyncio.create_subprocess_shell(cmd, stdout=asyncio.subprocess.PIPE,
                                                      stderr=asyncio.subprocess.PIPE)
 
