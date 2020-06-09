@@ -7,8 +7,8 @@ class Game(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 #Put server IP and PORT here
-    IP = 'theboisterrariaserver.ddns.net'
-    PORT = '7777'
+    IP = "theboisterrariaserver.ddns.net"
+    PORT = "7777"
 
 #Checks the current status of the Terraria server
     @commands.command(brief='- Displays the current status of the Terraria server.')
