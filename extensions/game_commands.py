@@ -6,9 +6,9 @@ import asyncio
 class Game(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-
-    IP = #put server IP here
-    PORT = #put server port here
+#Put server IP and PORT here
+    IP = 'put server IP here'
+    PORT = 'put server port here'
 
 #Checks the current status of the Terraria server
     @commands.command(brief='- Displays the current status of the Terraria server.')
