@@ -6,11 +6,7 @@ import asyncio
 class Game(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-
-    def IP(self, IP):
         self.IP = 'theboisterrariaserver.ddns.net'
-
-    def PORT(self, PORT):
         self.PORT = '7777'
 
 #Checks the current status of the Terraria server
