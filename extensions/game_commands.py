@@ -6,7 +6,7 @@ import asyncio
 class Game(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-#Put server IP and PORT here
+        
     IP = "theboisterrariaserver.ddns.net"
     PORT = "7777"
 
