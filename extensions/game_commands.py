@@ -9,8 +9,6 @@ class Game(commands.Cog):
         self.IP = 'theboisterraria.ddns.net'
         self.PORT = '7777'
 
-        print('nc -vz -w 30 ' + self.IP +' ' + self.PORT)
-
 #Checks the current status of the Terraria server
     @commands.command(brief='- Displays the current status of the Terraria server.')
     async def tstatus(self, ctx):
