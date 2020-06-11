@@ -2,18 +2,17 @@ from discord.ext import commands
 import discord
 import subprocess
 import asyncio
+from confidential import IP,PORT
 
 class Game(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.IP = 'theboisterraria.ddns.net'
-        self.PORT = '7777'
 
 #Checks the current status of the Terraria server
     @commands.command(brief='- Displays the current status of the Terraria server.')
     async def tstatus(self, ctx):
         await ctx.send('Pinging Terraria Server... ' 'This can take up to 30 seconds.')
-        cmd = 'nc -vz -w 30 ' + self.IP +' ' + self.PORT
+        cmd = 'nc -vz -w 30 ' + IP +' ' + PORT
         proc = await asyncio.create_subprocess_shell(cmd, stdout=asyncio.subprocess.PIPE,
                                                      stderr=asyncio.subprocess.PIPE)
 
@@ -29,8 +28,8 @@ class Game(commands.Cog):
     async def tinfo(self, ctx):
         embed = discord.Embed(colour=discord.Colour.dark_green())
 
-        embed.add_field(name='Server IP', value=self.IP)
-        embed.add_field(name='Server Port', value=self.PORT)
+        embed.add_field(name='Server IP', value=IP)
+        embed.add_field(name='Server Port', value=PORT)
 
         await ctx.message.channel.send(embed=embed)
 
