@@ -30,10 +30,17 @@ class Basic(commands.Cog):
 
         embed.set_footer(text=datetime.datetime.now())
 
+    @commands.command(brief='- Provides Server Statistics', description='Server Status')
+    async def emotes(self, ctx):
+        guild = ctx.guild
+
+        embed = discord.Embed(colour=discord.Colour.dark_green())
+
         emoji_string = ""
         for e in guild.emojis:
             if e.is_usable():
                 emoji_string += str(e)
+
         embed.add_field(name='Custom Emotes', value=emoji_string or 'No Available Emotes')
 
         await ctx.send(embed=embed)
