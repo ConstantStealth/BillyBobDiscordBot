@@ -21,29 +21,13 @@ class Basic(commands.Cog):
         no_server_members = len(guild.members)
 
         embed.add_field(name='Server Name', value=guild.name, inline=False)
-
-        embed.add_field(name='# Of Server Members', value=no_server_members)
-
-        embed.add_field(name='# Of Voice Channels', value=no_voice_channels)
-
-        embed.add_field(name='# Of Text Channels', value=no_text_channels)
-
+        embed.add_field(name='# Of Server Members', value=int(no_server_members))
+        embed.add_field(name='# Of Voice Channels', value=int(no_voice_channels))
+        embed.add_field(name='# Of Text Channels', value=int(no_text_channels))
         embed.set_footer(text=datetime.datetime.now())
 
-    @commands.command(brief='- Provides Server Statistics', description='Server Status')
-    async def emotes(self, ctx):
-        guild = ctx.guild
+        await ctx.message.channel.send(embed=embed)
 
-        embed = discord.Embed(colour=discord.Colour.dark_green())
-
-        emoji_string = ""
-        for e in guild.emojis:
-            if e.is_usable():
-                emoji_string += str(e)
-
-        embed.add_field(name='Custom Emotes', value=emoji_string or 'No Available Emotes')
-
-        await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(Basic(bot))

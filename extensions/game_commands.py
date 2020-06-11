@@ -27,8 +27,12 @@ class Game(commands.Cog):
 #Displays the Terraria server IP and Port
     @commands.command(brief='- Displays the Terraria Server IP and Port')
     async def tinfo(self, ctx):
-        await ctx.send(' You can connect to the Terraria server with the below information:```Server IP: ' + self.IP + '\n'
-                        'Server Port: ' + self.PORT + '```')
+        embed = discord.Embed(colour=discord.Colour.dark_green())
+
+        embed.add_field(name='Server IP', value=self.IP, inline=False)
+        embed.add_field(name='Server Port', value=self.PORT, inline=False)
+
+        await ctx.message.channel.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(Game(bot))
