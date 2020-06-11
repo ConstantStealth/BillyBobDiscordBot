@@ -1,7 +1,7 @@
 from discord.ext import commands
 import os
 
-#Get token from token.txt
+#Get token.txt from token.txt.txt
 def read_token():
     with open('token.txt', 'r') as f:
         lines = f.readlines()
@@ -9,12 +9,12 @@ def read_token():
 token=read_token()
 
 #Command prefix
-bot = commands.Bot(command_prefix='!')
+bot = commands.Bot(command_prefix='.')
 
 #Load extensions
 for filename in os.listdir("./extensions"):
     if filename.endswith(".py") and filename != "__init__.py":
         bot.load_extension(f'extensions.{filename[:-3]}')
 
-#Run bot with token passed
+#Run bot with token.txt passed
 bot.run(token)
