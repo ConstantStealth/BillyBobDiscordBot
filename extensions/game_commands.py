@@ -29,8 +29,8 @@ class Game(commands.Cog):
     async def tinfo(self, ctx):
         embed = discord.Embed(colour=discord.Colour.dark_green())
 
-        embed.add_field(name='Server IP', value=self.IP, inline=False)
-        embed.add_field(name='Server Port', value=self.PORT, inline=False)
+        embed.add_field(name='Server IP', value=self.IP)
+        embed.add_field(name='Server Port', value=self.PORT)
 
         await ctx.message.channel.send(embed=embed)
 
