@@ -23,15 +23,5 @@ class Game(commands.Cog):
         else:
             await ctx.send('The Terraria server is currently down ' +ctx.message.author.mention)
 
-#Displays the Terraria server IP and Port
-    @commands.command(brief='- Displays the Terraria Server IP and Port')
-    async def tinfo(self, ctx):
-        embed = discord.Embed(colour=discord.Colour.dark_green())
-
-        embed.add_field(name='Server IP', value=IP)
-        embed.add_field(name='Server Port', value=PORT)
-
-        await ctx.message.channel.send(embed=embed)
-
 def setup(bot):
     bot.add_cog(Game(bot))
