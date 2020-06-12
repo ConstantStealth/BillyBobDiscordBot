@@ -4,7 +4,7 @@ import subprocess
 import asyncio
 from confidential import IP,PORT
 
-class Game(commands.Cog):
+class Terraria(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -24,4 +24,4 @@ class Game(commands.Cog):
             await ctx.send('The Terraria server is currently down ' +ctx.message.author.mention)
 
 def setup(bot):
-    bot.add_cog(Game(bot))
+    bot.add_cog(Terraria(bot))
