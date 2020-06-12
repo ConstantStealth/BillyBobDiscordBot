@@ -10,7 +10,7 @@ class Basic(commands.Cog):
     async def ping(self, ctx):
         await ctx.send('Pong!')
 
-    @commands.command(brief='- Provides Server Statistics', description='Server Status')
+    @commands.command(brief='- Provides Server Statistics', description='Server Stats')
     async def stats(self, ctx):
         guild = ctx.guild
 
