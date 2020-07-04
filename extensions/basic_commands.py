@@ -28,6 +28,5 @@ class Basic(commands.Cog):
 
         await ctx.message.channel.send(embed=embed)
 
-
 def setup(bot):
     bot.add_cog(Basic(bot))
