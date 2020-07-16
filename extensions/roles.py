@@ -17,7 +17,8 @@ class Roles(commands.Cog):
         conn.close()
 
     @commands.check_any(commands.is_owner(), commands.has_role('Admin'))
-    @commands.command(name='createrole', brief='Creates a self-joinable role')
+    @commands.command(name='createrole', brief='Creates a self-joinable role',
+                      aliases=['newrole'])
     async def createrole(self, ctx, role: str, color: discord.Colour,
                                  joinable=True):
         conn = sqlite3.connect('databases/roles.db')
@@ -41,7 +42,8 @@ class Roles(commands.Cog):
         role_cache_updated = True
 
     @commands.check_any(commands.is_owner(), commands.has_role('Admin'))
-    @commands.command(name='deleterole', brief='Deletes a self-joinable role',)
+    @commands.command(name='deleterole', brief='Deletes a self-joinable role',
+                      aliases=['removerole'])
     async def deleterole(self, ctx, *, role_name):
         role = discord.utils.get(ctx.guild.roles, name=role_name)
         if role is not None:
@@ -62,7 +64,7 @@ class Roles(commands.Cog):
             await ctx.send(f'{role_name} does not exist.')
 
     @commands.command(name='joinrole', brief='Join a self-joinable role',
-                      alias='subscribe')
+                      aliases=['subscribe', 'join'])
     async def joinrole(self, ctx, *, role_name: str):
         role = discord.utils.get(ctx.guild.roles, name=role_name)
         if role is not None:
@@ -78,7 +80,7 @@ class Roles(commands.Cog):
                      '.roleslist to confirm.')
 
     @commands.command(name='rolelist', brief='Displays a list of self-joinable roles',
-                      alias='roleslist')
+                      aliases=['roleslist', 'listroles'])
     async def rolelist(self, ctx):
         conn = sqlite3.connect('databases/roles.db')
         c = conn.cursor()
@@ -92,9 +94,10 @@ class Roles(commands.Cog):
         await ctx.send('Below is a list of self-joinable roles: %s' % msg)
 
     @commands.check_any(commands.is_owner(), commands.has_role('Admin'))
-    @commands.command(name='backup', brief='Backup all new/updated bot files from VPS to GitHub')
-    async def backup(self, ctx):
-        await ctx.send('Committing and pushing updated files to GitHub... ')
+    @commands.command(name='backupdb', brief='Backup all new/updated bot files from VPS to GitHub',
+                      aliases=['updatedb', 'dbupdate', 'backup'])
+    async def backupdb(self, ctx):
+        await ctx.send('Committing and pushing updated database to GitHub... ')
         cmd = subprocess.run('git add /databases/roles.db && commit -m "Database Update" && git push', shell=True)
         if cmd.returncode == 0:
             await ctx.send('The database has been updated to GitHub')
