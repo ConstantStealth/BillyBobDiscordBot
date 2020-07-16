@@ -44,7 +44,7 @@ class Roles(commands.Cog):
     @commands.check_any(commands.is_owner(), commands.has_role('Admin'))
     @commands.command(name='deleterole', brief='Deletes a self-joinable role',
                       aliases=['removerole'])
-    async def deleterole(self, ctx, *, role_name):
+    async def deleterole(self, ctx, *, role_name, reason=None):
         role = discord.utils.get(ctx.guild.roles, name=role_name)
         if role is not None:
             conn = sqlite3.connect('databases/roles.db')
@@ -59,6 +59,7 @@ class Roles(commands.Cog):
             conn.commit()
             conn.close()
             role_cache_updated = True
+            await role.delete(reason='Removed by command')
             await ctx.send(f'Deleted role {role_name}.')
         else:
             await ctx.send(f'{role_name} does not exist.')
@@ -104,6 +105,11 @@ class Roles(commands.Cog):
             await ctx.send('The database has been updated to GitHub')
         else:
             await ctx.send('There was an error updating the database to GitHub')
+
+    @commands.command()
+    async def remove(self, ctx):
+        role = discord.utils.get(ctx.guild.roles, name='DELETE')
+
 
 def setup(bot):
     bot.add_cog(Roles(bot))
