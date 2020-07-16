@@ -5,7 +5,6 @@ class Admin(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-
     @commands.check_any(commands.is_owner(), commands.has_role('Admin'))
     @commands.command(name='purge', brief='Purges [X] amount of messages from the chat')
     async def purge(self, ctx, amount = 0):
