@@ -91,10 +91,9 @@ class Roles(commands.Cog):
 
     @commands.check_any(commands.is_owner(), commands.has_role('Admin'))
     @commands.command()
-    async def updatedb(self, ctx):
-        await ctx.send('Committing and pushing database to GitHub... ')
-        cmd = subprocess.run('git commit -am "DB Update" && git push', shell=True)
-
+    async def backup(self, ctx):
+        await ctx.send('Committing and pushing updated files to GitHub... ')
+        cmd = subprocess.run('git commit -am "Update" && git push', shell=True)
         if cmd.returncode == 0:
             await ctx.send('The database has been updated to GitHub')
         else:
