@@ -95,7 +95,7 @@ class Roles(commands.Cog):
         await ctx.send('Committing and pushing database to GitHub... ')
         cmd = subprocess.run('git commit -am "DB Update" && git push', shell=True)
 
-        if proc.returncode == 0:
+        if cmd.returncode == 0:
             await ctx.send('The database has been updated to GitHub')
         else:
             await ctx.send('There was an error updating the database to GitHub')
