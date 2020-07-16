@@ -91,6 +91,7 @@ class Roles(commands.Cog):
         for role in roles:
             msg = f'{msg}{role[0]}\n'
         msg = f'```\n{msg}```'
+        conn.close()
         await ctx.send('Below is a list of self-joinable roles: %s' % msg)
 
     @commands.check_any(commands.is_owner(), commands.has_role('Admin'))
