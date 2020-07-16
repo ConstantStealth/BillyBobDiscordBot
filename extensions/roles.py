@@ -1,6 +1,8 @@
 from discord.ext import commands
 import discord
 import sqlite3
+import subprocess
+import asyncio
 
 class Roles(commands.Cog):
     def __init__(self, bot):
@@ -89,9 +91,9 @@ class Roles(commands.Cog):
 
     @commands.check_any(commands.is_owner(), commands.has_role('Admin'))
     @commands.command()
-    async def dbupdate(self, ctx):
+    async def updatedb(self, ctx):
         await ctx.send('Committing and pushing database to GitHub... ')
-        cmd = 'git commit -am "DB Update'
+        cmd = 'git commit -am "DB Update" && git push'
         proc = await asyncio.create_subprocess_shell(cmd, stdout=asyncio.subprocess.PIPE,
                                                      stderr=asyncio.subprocess.PIPE)
 
