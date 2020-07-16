@@ -89,9 +89,9 @@ class Roles(commands.Cog):
 
     @commands.check_any(commands.is_owner(), commands.has_role('Admin'))
     @commands.command()
-    async def updatedb(self, ctx):
+    async def dbupdate(self, ctx):
         await ctx.send('Committing and pushing database to GitHub... ')
-        cmd = 'nc -vz -w 30 '
+        cmd = 'git commit -am "DB Update'
         proc = await asyncio.create_subprocess_shell(cmd, stdout=asyncio.subprocess.PIPE,
                                                      stderr=asyncio.subprocess.PIPE)
 
