@@ -95,7 +95,7 @@ class Roles(commands.Cog):
     @commands.command(name='backup', brief='Backup all new/updated bot files from VPS to GitHub')
     async def backup(self, ctx):
         await ctx.send('Committing and pushing updated files to GitHub... ')
-        cmd = subprocess.run('git commit -am "Update" && git push', shell=True)
+        cmd = subprocess.run('git add /databases/roles.db && commit -m "Database Update" && git push', shell=True)
         if cmd.returncode == 0:
             await ctx.send('The database has been updated to GitHub')
         else:
