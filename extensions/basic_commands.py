@@ -6,11 +6,11 @@ class Basic(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(brief='- Pings BillyBobDiscordBot')
+    @commands.command(name='ping', brief='Pings BillyBobDiscordBot')
     async def ping(self, ctx):
         await ctx.send('Pong!')
 
-    @commands.command(brief='- Provides Server Statistics', description='Server Stats')
+    @commands.command(name='stats', brief='Provides Server Statistics', description='Server Stats')
     async def stats(self, ctx):
         guild = ctx.guild
 
