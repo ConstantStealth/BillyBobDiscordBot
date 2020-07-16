@@ -93,11 +93,7 @@ class Roles(commands.Cog):
     @commands.command()
     async def updatedb(self, ctx):
         await ctx.send('Committing and pushing database to GitHub... ')
-        cmd = 'git commit -am "DB Update" && git push'
-        proc = await asyncio.create_subprocess_shell(cmd, stdout=asyncio.subprocess.PIPE,
-                                                     stderr=asyncio.subprocess.PIPE)
-
-        stdout, stderr = await proc.communicate()
+        cmd = subprocess.run('git commit -am "DB Update" && git push', shell=True)
 
         if proc.returncode == 0:
             await ctx.send('The database has been updated to GitHub')
