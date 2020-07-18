@@ -10,12 +10,11 @@ class Basic(commands.Cog):
     async def ping(self, ctx):
         await ctx.send('Pong!')
 
-    @commands.command(name='stats', brief='Provides Server Statistics', description='Server Stats')
+    @commands.command(name='stats', brief='Provides Server Statistics',
+                      description='Server Stats')
     async def stats(self, ctx):
         guild = ctx.guild
-
         embed = discord.Embed(colour=discord.Colour.dark_green())
-
         no_voice_channels = len(guild.voice_channels)
         no_text_channels = len(guild.text_channels)
         no_server_members = len(guild.members)
