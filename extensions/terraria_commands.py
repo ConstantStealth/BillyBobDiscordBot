@@ -8,7 +8,6 @@ class Terraria(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-# Checks the current status of the Terraria server
     @commands.command(name='tstatus', brief='Displays the current status of the Terraria server')
     async def tstatus(self, ctx):
         await ctx.send('Pinging Terraria Server... ' 'This can take up to 30 seconds.')
@@ -23,7 +22,6 @@ class Terraria(commands.Cog):
         else:
             await ctx.send('The Terraria server is currently down ' +ctx.message.author.mention)
 
-# Displays Terraria Server IP and Port
     @commands.command(name='tinfo', brief='Displays Terraria Server IP and Port')
     async def tinfo(self, ctx):
         embed = discord.Embed(colour=discord.Colour.dark_green())
