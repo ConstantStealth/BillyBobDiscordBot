@@ -100,11 +100,12 @@ class Roles(commands.Cog):
                       aliases=['updatedb', 'dbupdate', 'backup'])
     async def backupdb(self, ctx):
         await ctx.send('Committing and pushing updated database to GitHub... ')
-        cmd = subprocess.run('git add databases/roles.db && git commit -m "Database Update" && git push', shell=True)
+        cmd = subprocess.run('git add databases/roles.db && git commit -m "Database Update" && git push',
+                             shell=True)
         if cmd.returncode == 0:
             await ctx.send('The database has been updated to GitHub')
         else:
-            await ctx.send('There was an error updating the database to GitHub')
+            await ctx.send('There was an error updating the database to GitHub, the database may already be up to date.')
 
     @commands.command()
     async def remove(self, ctx):
