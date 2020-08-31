@@ -33,9 +33,11 @@ class Roles(commands.Cog):
             await ctx.guild.create_role(name=role, color=color)
             print('Role created.')
             if joinable is True:
-                # Stash the role in the database.
+                # Stash the role in the database and backup to github.
                 data = (role, joinable)
                 c.execute('INSERT INTO roles VALUES (?,?)', data)
+                cmd = subprocess.run('git add databases/roles.db && git commit -m "Database Update" && git push',
+                                     shell=True)
                 conn.commit()
                 conn.close()
             await ctx.send('Created role {}.'.format(role))
@@ -54,6 +56,8 @@ class Roles(commands.Cog):
             data = c.fetchall()
             if len(data) > 0:
                 deleted = c.execute('DELETE FROM roles WHERE name=?', name)
+                cmd = subprocess.run('git add databases/roles.db && git commit -m "Database Update" && git push',
+                                     shell=True)
             else:
                 await ctx.send('That role does not exist.')
             conn.commit()
@@ -81,7 +85,7 @@ class Roles(commands.Cog):
                      '.roleslist to confirm.')
 
     @commands.command(name='rolelist', brief='Displays a list of self-joinable roles',
-                      aliases=['roleslist', 'listroles'])
+                      aliases=['roleslist', 'listroles', 'roles'])
     async def rolelist(self, ctx):
         conn = sqlite3.connect('databases/roles.db')
         c = conn.cursor()
@@ -96,8 +100,8 @@ class Roles(commands.Cog):
         await ctx.send('Below is a list of self-joinable roles: %s' % msg)
 
     @commands.check_any(commands.is_owner(), commands.has_role('Admin'))
-    @commands.command(name='backupdb', brief='Backup all new/updated bot files from VPS to GitHub',
-                      aliases=['updatedb', 'dbupdate', 'backup'])
+    @commands.command(name='backupdb', brief='Backup new/updated database file from server to GitHub',
+                      aliases=['updatedb', 'dbupdate'])
     async def backupdb(self, ctx):
         await ctx.send('Committing and pushing updated database to GitHub... ')
         cmd = subprocess.run('git add databases/roles.db && git commit -m "Database Update" && git push',
@@ -106,11 +110,6 @@ class Roles(commands.Cog):
             await ctx.send('The database has been updated to GitHub')
         else:
             await ctx.send('There was an error updating the database to GitHub, the database may already be up to date.')
-
-    @commands.command()
-    async def remove(self, ctx):
-        role = discord.utils.get(ctx.guild.roles, name='DELETE')
-
 
 def setup(bot):
     bot.add_cog(Roles(bot))
