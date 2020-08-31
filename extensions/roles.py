@@ -36,11 +36,11 @@ class Roles(commands.Cog):
                 # Stash the role in the database and backup to github.
                 data = (role, joinable)
                 c.execute('INSERT INTO roles VALUES (?,?)', data)
-                cmd = subprocess.run('git add databases/roles.db && git commit -m "Database Update" && git push',
-                                     shell=True)
                 conn.commit()
                 conn.close()
             await ctx.send('Created role {}.'.format(role))
+        cmd = subprocess.run('git add databases/roles.db && git commit -m "Database Update" && git push',
+                             shell=True)
         role_cache_updated = True
 
     @commands.check_any(commands.is_owner(), commands.has_role('Admin'))
@@ -56,8 +56,6 @@ class Roles(commands.Cog):
             data = c.fetchall()
             if len(data) > 0:
                 deleted = c.execute('DELETE FROM roles WHERE name=?', name)
-                cmd = subprocess.run('git add databases/roles.db && git commit -m "Database Update" && git push',
-                                     shell=True)
             else:
                 await ctx.send('That role does not exist.')
             conn.commit()
@@ -65,6 +63,8 @@ class Roles(commands.Cog):
             role_cache_updated = True
             await role.delete(reason='Removed by command')
             await ctx.send(f'Deleted role {role_name}.')
+            cmd = subprocess.run('git add databases/roles.db && git commit -m "Database Update" && git push',
+                                 shell=True)
         else:
             await ctx.send(f'{role_name} does not exist.')
 
