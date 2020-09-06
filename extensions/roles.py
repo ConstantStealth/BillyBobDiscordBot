@@ -86,9 +86,10 @@ class Roles(commands.Cog):
             elif len(data) > 0:
                 await ctx.author.add_roles(role)
                 await ctx.send(f'You have joined {role_name}.')
+            else:
+                await ctx.send(f' Role {role_name} does not exist, please check the available self-joinable roles with the .roles command.')
         else:
-            ctx.send('The role {role_name} doesn\'t seem to exist. Use '
-                     '.roleslist to confirm.')
+            await ctx.send(f' Role {role_name} does not exist, please check the available self-joinable roles with the .roles command.')
 
     @commands.command(name='rolelist', brief='Displays a list of self-joinable roles',
                       aliases=['roleslist', 'listroles', 'roles'])
