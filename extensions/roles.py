@@ -28,7 +28,7 @@ class Roles(commands.Cog):
         data = c.fetchall()
         if len(data) > 0:
             await ctx.send('That role already exists.')
-        elif joinable is True:
+        elif joinable is True or False:
             print('Running createrole')
             await ctx.guild.create_role(name=role, color=color)
             print('Role created.')
