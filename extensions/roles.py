@@ -39,7 +39,7 @@ class Roles(commands.Cog):
                 conn.commit()
                 conn.close()
             await ctx.send('Created role {}.'.format(role))
-        cmd = subprocess.run('git add databases/roles.db && git commit -m "Database Update" && git push',
+        cmd = subprocess.run('git add databases/roles.db && git commit -m "Database Update" && git push git@github.com:ConstantStealth/BillyBobDiscordBot-Private.git',
                              shell=True)
         role_cache_updated = True
 
@@ -63,7 +63,7 @@ class Roles(commands.Cog):
             role_cache_updated = True
             await role.delete(reason='Removed by command')
             await ctx.send(f'Deleted role {role_name}.')
-            cmd = subprocess.run('git add databases/roles.db && git commit -m "Database Update" && git push',
+            cmd = subprocess.run('git add databases/roles.db && git commit -m "Database Update" && git push git@github.com:ConstantStealth/BillyBobDiscordBot-Private.git',
                                  shell=True)
         else:
             await ctx.send(f'{role_name} does not exist.')
@@ -104,7 +104,7 @@ class Roles(commands.Cog):
                       aliases=['updatedb', 'dbupdate'])
     async def backupdb(self, ctx):
         await ctx.send('Committing and pushing updated database to GitHub... ')
-        cmd = subprocess.run('git add databases/roles.db && git commit -m "Database Update" && git push',
+        cmd = subprocess.run('git add databases/roles.db && git commit -m "Database Update" && git push git@github.com:ConstantStealth/BillyBobDiscordBot-Private.git',
                              shell=True)
         if cmd.returncode == 0:
             await ctx.send('The database has been updated to GitHub')
