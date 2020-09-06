@@ -72,12 +72,18 @@ class Roles(commands.Cog):
                       aliases=['subscribe', 'join'])
     async def joinrole(self, ctx, *, role_name: str):
         role = discord.utils.get(ctx.guild.roles, name=role_name)
+        conn = sqlite3.connect('databases/roles.db')
+        c = conn.cursor()
+        name = (role_name,)
+        search = c.execute('SELECT * FROM roles WHERE name=?', name)
+        data = c.fetchall()
+        conn.close()
         if role is not None:
             roles = ctx.author.roles
             if role in roles:
                 await ctx.author.remove_roles(role)
                 await ctx.send(f'You have left {role_name}.')
-            else:
+            elif len(data) > 0:
                 await ctx.author.add_roles(role)
                 await ctx.send(f'You have joined {role_name}.')
         else:
