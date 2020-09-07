@@ -1,6 +1,6 @@
 from discord.ext import commands
 import os
-from confidential import TOKEN
+from config.confidential import TOKEN
 
 # Command prefix
 bot = commands.Bot(command_prefix='.')
