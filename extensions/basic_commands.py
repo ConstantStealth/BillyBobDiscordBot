@@ -27,5 +27,10 @@ class Basic(commands.Cog):
 
         await ctx.message.channel.send(embed=embed)
 
+    @commands.command(name='repo', brief='Provides a link to BBDB GitHub Repository',
+                      aliases=['repository'])
+    async def repo(self, ctx):
+        await ctx.send('You can find the BBDB GitHub repository here: https://github.com/ConstantStealth/BillyBobDiscordBot/')
+
 def setup(bot):
     bot.add_cog(Basic(bot))
