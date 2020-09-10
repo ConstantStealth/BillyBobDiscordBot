@@ -8,7 +8,7 @@ class Basic(commands.Cog):
 
     @commands.command(name='ping', brief='Pings BillyBobDiscordBot')
     async def ping(self, ctx):
-        latency = round(self.bot.latency, 2)
+        latency = round(self.bot.latency * 1000, 1)
         await ctx.send(f'Pong! ({latency}ms)')
 
     @commands.command(name='stats', brief='Provides Server Statistics',
