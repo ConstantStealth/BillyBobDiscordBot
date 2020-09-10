@@ -38,9 +38,11 @@ class Roles(commands.Cog):
                 c.execute('INSERT INTO roles VALUES (?,?)', data)
                 conn.commit()
                 conn.close()
+            cmd = subprocess.run('git add databases/roles.db && git commit -m "Database Update" && git push git@github.com:ConstantStealth/BillyBobDiscordBot-Private.git',
+                                 shell=True)
             await ctx.send('Created role {}.'.format(role))
-        cmd = subprocess.run('git add databases/roles.db && git commit -m "Database Update" && git push git@github.com:ConstantStealth/BillyBobDiscordBot-Private.git',
-                             shell=True)
+
+
         role_cache_updated = True
 
     @commands.check_any(commands.is_owner(), commands.has_role('Admin'))
